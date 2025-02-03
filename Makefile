@@ -14,3 +14,6 @@ db-migrate:
 
 db-down:
 	migrate -path db/migrations -database "$(DB_URL)" -verbose down
+
+sqlc:
+	sqlc generate
