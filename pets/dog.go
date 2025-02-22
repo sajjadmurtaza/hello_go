@@ -54,8 +54,8 @@ func (d *Dog) sleep() {
 // ========= Composition ==========
 // ============= #### =============
 
-func GuardDog(name, breed string, lastSlept time.Time) Dog {
-	return Dog{
+func GuardDog(name, breed string, lastSlept time.Time) *Dog {
+	return &Dog{
 		Name:  name,
 		Breed: breed,
 

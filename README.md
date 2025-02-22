@@ -57,6 +57,76 @@
 
 ---
 
+### **exported (public) or unexported (private)**
+
+- Exported (Public): Starts with an uppercase letter and accessible outside the package.
+  - FuncName, VariableName, StructName, etc.
+- Unexported (Private): Starts with a lowercase letter and can only be called from within the package.
+  - funcName, variableName, structName, etc.
+
+```go
+package pets
+
+type Dog struct {
+	Name  string
+	Breed string
+
+   lastSlept time.Time
+}
+
+```
+
+[pets/dog.go](https://github.com/sajjadmurtaza/hello_go/blob/main/pets/dog.go)
+
+---
+### **Encapsulation**
+- Encapsulation in Go is achieved through the use of exported and unexported identifiers
+
+```go
+   package main
+
+	pet := pets.Dog{
+		Name:  "Fast Doggy",
+		Breed: "Strange",
+	}
+
+	fmt.Println(pet.Name)          // ✅ Allowed (exported)
+	fmt.Println(pet.Breed)         // ✅ Allowed (exported)
+	// fmt.Println(pet.lastSlept)  // ❌ ERROR: lastSlept is unexported
+```
+
+
+---
+### **Composition**
+
+- Inheritance (IS-A Relationship)
+- Composition (HAS-A Relationship)
+
+- Composition is a design principle a struct includes another struct to reuse its fields and methods, instead of using inheritance.
+
+```go
+type Dog struct {
+	Name  string
+	Breed string
+
+	lastSlept time.Time // unexported
+
+	Animal // composition
+}
+```
+
+- The Dog struct "inherits" the fields and methods of Animal without explicitly extending it.
+- Because Animal is embedded, Dog automatically gains access to Animal's methods.
+   - Animal struct provides the lastAte field and Feed() method.
+
+
+[pets/animal.go](https://github.com/sajjadmurtaza/hello_go/blob/main/pets/animal.go) |
+[pets/dog.go](https://github.com/sajjadmurtaza/hello_go/blob/main/pets/dog.go)
+
+
+
+---
+
 ### **Makefile for Database Setup and Migrations**
 
 Below is a `Makefile` to simplify database setup, migrations, and other tasks for your project. It includes commands for creating/dropping databases, running PostgreSQL in Docker, and applying migrations.
@@ -72,6 +142,8 @@ db-migrate:
 	migrate -path db/migrations -database "$(DB_URL)" -verbose up
 
 ```
+---
+- An interface defines method signatures but does not implement them.
 ---
 
 ### **SQLC Configuration**
@@ -108,14 +180,5 @@ sql:
 - The `sqlc` configuration ensures that your SQL queries are type-safe and integrated into your Go codebase.
 
 
+---
 
-- Encapsulation in Go is achieved through the use of exported and unexported identifiers
-
-
-- Inheritance (IS-A Relationship)
-- Inheritance is a mechanism where a child (subclass) inherits properties and behavior from a parent (superclass).
-
-- Composition (HAS-A Relationship)
-- Composition is a design principle where one struct contains another struct as a field instead of inheriting from it.
-
-- interface is collection of method signatures
