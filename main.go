@@ -11,6 +11,10 @@ import (
 func main() {
 	fmt.Println("Hello Go!")
 
+	numbers := []int{1, 5, 3, 9, 2, 8}
+	max_number := find_max(numbers)
+	println(max_number)
+
 	// ============= #### =============
 	// ============= PETS =============
 	// ============= #### =============
@@ -73,4 +77,20 @@ func main() {
 	}
 
 	fmt.Printf("Rectangle area(Width: %.2f, Length: %.2f): %.2f\n", rectangle.Width, rectangle.Length, rectangle.GetArea())
+}
+
+func find_max(numbers []int) int {
+	if len(numbers) == 0 {
+		panic("Empty Array!")
+	}
+
+	max := numbers[0]
+
+	for _, number := range numbers {
+		if number > max {
+			max = number
+		}
+	}
+
+	return max
 }

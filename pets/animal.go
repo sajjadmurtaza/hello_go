@@ -9,7 +9,7 @@ type Animal struct {
 	lastAte time.Time
 }
 
-func (a Animal) Feed(food string) string {
+func (a *Animal) Feed(food string) string {
 	a.lastAte = time.Now()
 
 	return fmt.Sprintf("The animal is eating: %s", food)
