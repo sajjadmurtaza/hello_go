@@ -117,3 +117,5 @@ sql:
 
 - Composition (HAS-A Relationship)
 - Composition is a design principle where one struct contains another struct as a field instead of inheriting from it.
+
+- interface is collection of method signatures

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"hello_go/math"
 	"hello_go/pets"
+	"reflect"
 	"time"
 )
 
@@ -29,18 +30,36 @@ func main() {
 
 	sleepTime := time.Now()
 
-	dog := pets.GuardDog("Rudi", "GermanShepherd", sleepTime)
+	// dog := pets.GuardDog("Rudi", "GermanShepherd", sleepTime)
+	var animals []pets.Pet
 
-	if dog.IsHungry() {
-		fmt.Println(dog.Feed("KFC Chicken."))
-	} else {
-		fmt.Println("Your Dog is not Hungry.")
+	animals = append(animals, pets.Bulldog("Rudi", "GermanShepherd", sleepTime))
+	animals = append(animals, pets.AngryCat("AngryCat", "LoLCat"))
 
-		time.Sleep(5 * time.Second)
-		fmt.Print(dog.Feed("sushi."))
+	for _, pet := range animals {
+		fmt.Printf("Type: %s \n\n", reflect.TypeOf(pet))
+
+		switch animal := pet.(type) {
+		case *pets.Dog:
+			fmt.Printf("Animal: Dog, Name: %s\n", animal.Name)
+		case *pets.Cat:
+			fmt.Printf("Animal: Cat, Name: %s\n", animal.Name)
+		default:
+			fmt.Printf("Stuipido Animalo Here...")
+		}
+
+		if pet.IsHungry() {
+			fmt.Println(pet.Feed("KFC Chicken."))
+		} else {
+			fmt.Println("Your Animal is not Hungry.")
+
+			time.Sleep(5 * time.Second)
+			fmt.Print(pet.Feed("sushi."))
+		}
+
+		fmt.Println(pet.GivenAttention())
+		fmt.Printf("\n")
 	}
-
-	fmt.Println(dog.GivenAttention())
 
 	// ============= #### =============
 	// ============= MATH =============

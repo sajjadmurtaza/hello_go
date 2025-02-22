@@ -64,3 +64,18 @@ func GuardDog(name, breed string, lastSlept time.Time) Dog {
 		Animal: Animal{lastAte: time.Now()},
 	}
 }
+
+// ============= #### =============
+// ========= Polymorphism ==========
+// ============= #### =============
+
+func Bulldog(name, breed string, lastSlept time.Time) Pet {
+	return &Dog{
+		Name:  name,
+		Breed: breed,
+
+		lastSlept: lastSlept,
+
+		Animal: Animal{lastAte: time.Now()},
+	}
+}
