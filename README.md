@@ -106,3 +106,14 @@ sql:
 ### **Final Notes**
 - The `Makefile` simplifies common tasks like database setup and migrations, making it easier for developers to get started with your project.
 - The `sqlc` configuration ensures that your SQL queries are type-safe and integrated into your Go codebase.
+
+
+
+- Encapsulation in Go is achieved through the use of exported and unexported identifiers
+
+
+- Inheritance (IS-A Relationship)
+- Inheritance is a mechanism where a child (subclass) inherits properties and behavior from a parent (superclass).
+
+- Composition (HAS-A Relationship)
+- Composition is a design principle where one struct contains another struct as a field instead of inheriting from it.
