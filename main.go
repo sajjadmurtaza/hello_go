@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"hello_go/math"
 	"hello_go/pets"
+	"time"
 )
 
 func main() {
@@ -20,8 +21,26 @@ func main() {
 		Breed: "Strange",
 	}
 
-	fmt.Println(pet.Feed("Bread."))   // Calls the exported Feed method
-	fmt.Println(pet.GivenAttention()) // Calls the exported GivenAttention method
+	fmt.Println(pet.Name)
+	fmt.Println(pet.Breed)
+
+	// fmt.Println(pet.Feed("Bread."))   // Calls the exported Feed method
+	// fmt.Println(pet.GivenAttention()) // Calls the exported GivenAttention method
+
+	sleepTime := time.Now()
+
+	dog := pets.GuardDog("Rudi", "GermanShepherd", sleepTime)
+
+	if dog.IsHungry() {
+		fmt.Println(dog.Feed("KFC Chicken."))
+	} else {
+		fmt.Println("Your Dog is not Hungry.")
+
+		time.Sleep(5 * time.Second)
+		fmt.Print(dog.Feed("sushi."))
+	}
+
+	fmt.Println(dog.GivenAttention())
 
 	// ============= #### =============
 	// ============= MATH =============
@@ -34,5 +53,5 @@ func main() {
 		Length: 2.2,
 	}
 
-	fmt.Println(rectangle.GetArea())
+	fmt.Printf("Rectangle area(Width: %.2f, Length: %.2f): %.2f\n", rectangle.Width, rectangle.Length, rectangle.GetArea())
 }

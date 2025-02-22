@@ -6,14 +6,19 @@ import (
 	"time"
 )
 
+// ============= #### =============
+// ===== exported/unexported ======
+// ============= #### =============
+// variable start Capital: are exported and accessible outside the package.
+// variable start camelCase: are unexported and only accessible within the package.
+
 type Dog struct {
-	// variable are exported and accessible outside the package.
 	Name  string
 	Breed string
 
-	// encapsulation
-	// unexported and only accessible within the package.
-	lastSlept time.Time
+	lastSlept time.Time // unexported
+
+	Animal // composition
 }
 
 func (d Dog) Feed(food string) string {
@@ -29,18 +34,33 @@ func (d *Dog) GivenAttention() string {
 }
 
 // ============= #### =============
-// ======== encapsulation =========
+// ======== Encapsulation =========
 // ============= #### =============
-// needSleep and sleep are unexported methods (start with lowercase letters)
+// needSleep are unexported methods (start with lowercase letters)
 // and can only be called from within the pets package.
 
 func (d *Dog) needSleep() bool {
-	fmt.Printf("== Last Slept: %s\n", d.lastSlept)
-	fmt.Println("== Time now:", time.Now())
+	fmt.Printf("\n\n== Last Slept: %s\n", d.lastSlept)
+	fmt.Printf("== Time now: %s\n\n", time.Now())
 
 	return time.Now().Sub(d.lastSlept) > 4*time.Hour
 }
 
 func (d *Dog) sleep() {
 	d.lastSlept = time.Now()
+}
+
+// ============= #### =============
+// ========= Composition ==========
+// ============= #### =============
+
+func GuardDog(name, breed string, lastSlept time.Time) Dog {
+	return Dog{
+		Name:  name,
+		Breed: breed,
+
+		lastSlept: lastSlept,
+
+		Animal: Animal{lastAte: time.Now()},
+	}
 }
