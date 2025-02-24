@@ -2,10 +2,19 @@ package main
 
 import (
 	"fmt"
+	"hello_go/database"
 )
 
 func main() {
 	fmt.Println("Hello Go!")
+
+	arg := database.CreateAccountParams{
+		Owner:    "Tom",
+		Balance:  10,
+		Currency: "JPY",
+	}
+
+	fmt.Println(arg)
 
 	// numbers := []int{1, 5, 3, 9, 2, 8}
 	// max_number := find_max(numbers) // uncomment find_max

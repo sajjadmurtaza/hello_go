@@ -1,5 +1,8 @@
 DB_URL=postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable
 
+migrate-version:
+	migrate -version
+
 create-db:
 	docker exec -it  postgres createdb --username=root --owner=root simple_bank
 

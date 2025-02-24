@@ -9,6 +9,7 @@
 - [Encapsulation](#encapsulation)
 - [Composition](#composition)
 - [Makefile for Database Setup and Migrations](#makefile-for-database-setup-and-migrations)
+- [Database migrations. CLI](#migrations)
 - [SQLC Configuration](#sqlc-configuration)
 - [Final Notes](#final-notes)
 
@@ -77,6 +78,10 @@
      go mod init hello_go
      ```
    - The `go.mod` file specifies the Go version and dependencies.
+
+   - go get to install something
+      - `go get github.com/lib/pq`
+   - go tidy to install the dependencies 
 
 7. **Basic Program Structure**
    - Example:
@@ -282,6 +287,13 @@ db-migrate:
 - An interface defines method signatures but does not implement them.
 ---
 
+### **migrations**
+
+- Database migrations. CLI
+- `migrate create -ext sql -dir db/migrations -seq init_schema`
+
+---
+
 ### **SQLC Configuration**
 
 - command line tool that generates code from SQL
@@ -307,7 +319,7 @@ sql:
    brew install sqlc
    ```
 
-2. Generate Go code from SQL queries:  
+2. Generate Go code from SQL queries:
    ```bash
    sqlc generate
    ```
