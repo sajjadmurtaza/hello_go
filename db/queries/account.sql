@@ -7,9 +7,12 @@ INSERT INTO accounts (
   $1, $2, $3
 ) RETURNING *;
 
--- name GetAccount :one
+-- name: GetAccount :one
 SELECT * from accounts
 WHERE id = $1 LIMIT 1;
 
--- nam: GetAccounts :many
-SELECT * FROM accounts;
+-- name: ListAccounts :many
+SELECT * FROM accounts
+ORDER BY id
+LIMIT $1
+OFFSET $2;
