@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"hello_go/database"
+	"hello_go/util"
 )
 
 func main() {
@@ -15,6 +16,8 @@ func main() {
 	}
 
 	fmt.Println(arg)
+
+	fmt.Println(util.RandomCurrency())
 
 	// numbers := []int{1, 5, 3, 9, 2, 8}
 	// max_number := find_max(numbers) // uncomment find_max

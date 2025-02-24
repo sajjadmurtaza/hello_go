@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	"hello_go/database"
+	"hello_go/util"
 	"log"
 	"testing"
 
@@ -33,9 +34,9 @@ func TestCreateAccount(t *testing.T) {
 	testDBQueries = database.New(connection)
 
 	arg := database.CreateAccountParams{
-		Owner:    "Tom",
-		Balance:  10,
-		Currency: "JPY",
+		Owner:    util.RandomString(),
+		Balance:  util.RandomMoney(),
+		Currency: util.RandomCurrency(),
 	}
 
 	fmt.Println(arg)
@@ -46,5 +47,7 @@ func TestCreateAccount(t *testing.T) {
 	require.NotEmpty(t, account)
 
 	require.Equal(t, arg.Owner, account.Owner)
+
+	require.NotZero(t, account.ID)
 
 }
