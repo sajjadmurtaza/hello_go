@@ -284,6 +284,9 @@ db-migrate:
 
 ### **SQLC Configuration**
 
+- command line tool that generates code from SQL
+- `sqlc init`
+
 Below is the `sqlc` configuration file (`sqlc.yaml`) for generating Go code from SQL queries:
 
 ```yaml

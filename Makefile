@@ -17,3 +17,5 @@ db-down:
 
 sqlc:
 	sqlc generate
+
+.PHONY: postgres drop-db create-db db-down db-migrate sqlc

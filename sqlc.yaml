@@ -7,3 +7,6 @@ sql:
       go:
         package: "db"
         out: "app"
+        emit_json_tags: true
+
+#  Globbing for Schema and Queries /**/*.sql
