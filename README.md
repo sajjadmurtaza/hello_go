@@ -1,4 +1,44 @@
-### **Hello Gogo**
+# Table of Contents
+
+- [Hello Gogo](#hello-gogo)
+- [Variables](#variables)
+- [struct](#struct)
+- [& (address-of operator) / * (dereference operator)](#)
+- [exported (public) / unexported (private)](#exported-public--unexported-private)
+- [Array / [n]T](#array)
+- [Encapsulation](#encapsulation)
+- [Composition](#composition)
+- [Makefile for Database Setup and Migrations](#makefile-for-database-setup-and-migrations)
+- [SQLC Configuration](#sqlc-configuration)
+- [Final Notes](#final-notes)
+
+---
+
+### Hello Gogo
+
+- Developer at Google in 2007
+- Open-Source in 2009
+
+- Why We need Go?
+   - Multi-threading: Multiple tasks/things at once
+      - Each thread process one task
+      - you can run many of them parallel
+         - e.g.
+            - Google Drive: Downloading, uploading, changing file name
+            - Youtube: watching video, commenting
+
+   - Concurrency ≠ Exact same time: dealing lot of things at once
+      - Multiple users editing Goolge doc/Miro/Figma etc
+      - When process happen is same time
+         - e.g. Multiple users try to book a ticket at same time
+         - many languages have solutions
+            - complex code
+            - Expensive / Slow
+         - **GO**
+            - designed to run on mutiple code and support concurrency
+               - cheap and easy
+
+
 
 1. **Statically Typed Language**
    - Once a variable is declared with a specific type, it cannot be reassigned to a different type.
@@ -9,7 +49,7 @@
      ```
 
 2. **Strongly Typed Language**
-   - Operations between incompatible types (e.g., string + int) are not allowed.  
+   - Operations between incompatible types (e.g., string + int) are not allowed.
    - Example:
      ```go
      a := 1
@@ -57,7 +97,76 @@
 
 ---
 
-### **exported (public) or unexported (private)**
+### **Variables**
+
+- When two or more consecutive variables share same type
+   e.g.
+
+   ```go
+   x int, y int
+
+   // we can shortened to
+
+   x, y int
+   ```
+
+- `var` and short variable declaration (`:=`)
+   - automatically initialized to their zero values
+   ```go
+   var c, python, java bool
+   var i int
+   var j, k int = 9, 99
+
+
+	fmt.Println(i, j, k, c, python, java)
+   // 0 9 99 false false false
+   ```
+   - Use `var` when you need zero-value initialization or package-level variables.
+   - Use `:=` when inside a function and you have an initial value.
+
+---
+### **`struct`**
+
+- A `struct` is a collection of fields.
+   ```go
+   type Student struct {
+      Name string
+      Number float32
+   }
+   // Named Fields: Student{Name: "GO", Number: 1} ✅
+   // Positional Fields: Student{"GO", 1} ✅
+
+   // WRONG Positional Fields: Student{1, "GO"} ❌
+
+   student := Student{ Number: 1, Name: "GO"}
+   student.Name // GO
+
+   // student := Student{Number: 1, Name: 'GO'} // This will give an error! ❌
+   // char := 'G' // A single rune (character) - can only assign a single character
+   ```
+      - A struct literal is simply an expression used to create and initialize a struct.
+
+---
+
+### **& (address-of operator) / * (dereference operator)**
+
+- `&` is used to get the address of a variable.
+- `*` is used to access or modify the value stored at the address a pointer is pointing to.
+   ```go
+      var name, city string = "Go", "Berlin"
+
+      var namePointer = &name
+      var cityPointer = &city
+
+      namePointer // Memory address of Name
+      *namePointer // Dereference to get value of Name
+
+      *namePointer = "Golang"   // Change the value at the memory address pointed by namePointer
+   ```
+
+---
+
+### **exported (public) / unexported (private)**
 
 - Exported (Public): Starts with an uppercase letter and accessible outside the package.
   - FuncName, VariableName, StructName, etc.
@@ -77,6 +186,33 @@ type Dog struct {
 ```
 
 [pets/dog.go](https://github.com/sajjadmurtaza/hello_go/blob/main/pets/dog.go)
+
+---
+
+### **array**
+
+   ```go
+   var information [2]string
+
+	information[0] = "Go"
+	information[1] = "Language"
+
+	information // [Go Language]
+
+	var houseNumbers = [5]int{1,2,3,4,5} // [1 2 3 4 5]
+
+   // houseNumbers[startIndex:endIndex]
+   // The start index is inclusive, but the end index is exclusive.
+   houseNumbers[1:4]
+
+
+   // using a make
+   // we can create array with 0's
+   var dynamicIntArray = make([]int, 2, 5) // [0 0]
+   var dynamicIntArray = make([]int, 5) // [0 0 0 0 0 ]
+
+ 
+   ```
 
 ---
 ### **Encapsulation**
