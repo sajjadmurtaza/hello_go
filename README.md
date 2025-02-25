@@ -69,7 +69,7 @@
 
 ---
 
-### Variables
+### [Variables](https://github.com/sajjadmurtaza/hello_go/blob/main/basics/variables/main.go)
 
 - When two or more consecutive variables share the same type:
   ```go
@@ -82,6 +82,9 @@
 - `var` and short variable declaration (`:=`)
   - `var` Automatically initialized to their zero values
 
+  - Use `var` when you need zero-value initialization or package-level variables.
+  - Use `:=` when inside a function and you have an initial value.
+
   ```go
   var c, python, java bool
   var i int
@@ -90,8 +93,13 @@
   fmt.Println(i, j, k, c, python, java)
   // 0 9 99 false false false
   ```
-  - Use `var` when you need zero-value initialization or package-level variables.
-  - Use `:=` when inside a function and you have an initial value.
+
+  - var Keyword: Used for declaring variables, with optional type specification and initialization.
+  - Short Declaration (:=): Used within functions for concise variable declaration and initialization.
+  - Zero Values: Automatically assigned to variables that are declared without an initial value.
+  - Scope: Variables can be local to a function or package-level, affecting their accessibility.
+  - Constants: Immutable values declared with the const keyword.
+
 
 ---
 
