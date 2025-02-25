@@ -103,7 +103,7 @@
 
 ---
 
-### Struct
+### [Struct](https://github.com/sajjadmurtaza/hello_go/blob/main/basics/struct/main.go)
 
 - A `struct` is a collection of fields.
   ```go
