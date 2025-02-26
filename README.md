@@ -5,7 +5,7 @@
 - [Basic Program Structure](#basic-program-structure)
 - [Variables](#variables)
 - [Struct](#struct)
-- [& (Address-of Operator) / * (Dereference Operator)](#-address-of-operator--dereference-operator)
+- [& (Address-of Operator) / * (Dereference Operator)](#address-of-and-dereference-operator)
 - [Exported (Public) / Unexported (Private)](#exported-public--unexported-private)
 - [Array](#array)
 - [Encapsulation](#encapsulation)
@@ -122,7 +122,9 @@
 
 ---
 
-### & (Address-of Operator) / * (Dereference Operator)
+### [Address of and Dereference Operator](https://github.com/sajjadmurtaza/hello_go/blob/main/basics/addressOfAndDereference/main.go)
+
+**& (Address-of Operator) / * (Dereference Operator)**
 
 - `&` is used to get the address of a variable.
 - `*` is used to access or modify the value stored at the address a pointer is pointing to.
@@ -131,6 +133,10 @@
 
   var namePointer = &name
   var cityPointer = &city
+
+  // namePointer/cityPointer is called a pointer
+  // because it points to the memory location of name/city
+
 
   namePointer // Memory address of Name
   *namePointer // Dereference to get value of Name
@@ -323,6 +329,8 @@ sql:
 
 - The `Makefile` simplifies common tasks like database setup and migrations, making it easier for developers to get started with your project.
 - The `sqlc` configuration ensures that your SQL queries are type-safe and integrated into your Go codebase.
+- context
+   - https://medium.com/@jamal.kaksouri/the-complete-guide-to-context-in-golang-efficient-concurrency-management-43d722f6eaea
 
 
 ---
