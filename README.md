@@ -14,6 +14,7 @@
 | [Encapsulation](#encapsulation) | Data encapsulation principles |
 | [Composition](#composition) | Object composition in Go |
 | [Concurrency](#concurrency) | Concurrent programming features |
+| [Context](#context) | Context |
 | [Memory Management](#memory-management) | Go's memory management system |
 | [Packages and Modules](#packages-and-modules) | Package and module organization |
 | [Makefile for Database Setup and Migrations](#makefile-for-database-setup-and-migrations) | Database setup automation |
@@ -269,6 +270,82 @@ type Dog struct {
 - Channels
   - Send and receive values with the channel operator, `<-`
   - `ch := make(chan int)`
+
+---
+
+### Context
+- Controlling Timeout
+- Cancelling go routines
+- Passing metadata across GO application
+---
+
+- The `context` package provides a way to carry deadlines, cancellation signals, and request-scoped values across API boundaries and between processes.
+
+#### Key Features of Context
+1. **Controlling Timeouts**: Set deadlines for operations to prevent them from running indefinitely.
+   ```go
+   // Create a context that will timeout after 500ms
+   ctx, cancel := context.WithTimeout(context.Background(), 500*time.Millisecond)
+   defer cancel() // Always call cancel to release resources
+   
+   // Use the context in a function that respects timeouts
+   result, err := fetchData(ctx, userID)
+   ```
+
+2. **Cancelling Goroutines**: Propagate cancellation signals to multiple goroutines.
+   ```go
+   // Create a context that can be manually cancelled
+   ctx, cancel := context.WithCancel(context.Background())
+   
+   // Start multiple goroutines that use this context
+   go doWork(ctx, "task1")
+   go doWork(ctx, "task2")
+   
+   // Later, when you want to cancel all operations
+   cancel()
+   ```
+
+3. **Passing Request-Scoped Values**: Carry request-specific data across API boundaries.
+   ```go
+   // Create a context with a value
+   ctx := context.WithValue(context.Background(), "userID", 123)
+   
+   // Later, retrieve the value
+   if userID, ok := ctx.Value("userID").(int); ok {
+       fmt.Println("User ID:", userID)
+   }
+   ```
+
+#### Context Best Practices
+- Always pass context as the first parameter to functions that may perform long-running operations
+- Never store contexts in structs; pass them explicitly
+- Use context values only for request-scoped data, not for passing optional parameters
+- Always call cancel when you're done with a context, typically with defer
+- Don't create a context just for passing values; use it primarily for cancellation and timeouts
+
+#### Example: Using Context for API Timeouts
+```go
+func fetchData(ctx context.Context, userID int) (bool, error) {
+    // Simulate a slow API call
+    select {
+    case <-time.After(400 * time.Millisecond):
+        return true, nil
+    case <-ctx.Done():
+        return false, ctx.Err()
+    }
+}
+
+func main() {
+    ctx, cancel := context.WithTimeout(context.Background(), 500*time.Millisecond)
+    defer cancel()
+    
+    result, err := fetchData(ctx, 123)
+    if err != nil {
+        log.Fatalf("Error: %v", err)
+    }
+    fmt.Println("Success:", result)
+}
+```
 
 ---
 
