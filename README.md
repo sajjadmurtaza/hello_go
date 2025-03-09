@@ -1,22 +1,25 @@
 # Table of Contents
 
-- [Hello Gogo](#hello-gogo)
-- [Why We Need Go](#why-we-need-go)
-- [Basic Program Structure](#basic-program-structure)
-- [Variables](#variables)
-- [Struct](#struct)
-- [& (Address-of Operator) / * (Dereference Operator)](#address-of-and-dereference-operator)
-- [Exported (Public) / Unexported (Private)](#exported-public--unexported-private)
-- [Array](#array)
-- [Encapsulation](#encapsulation)
-- [Composition](#composition)
-- [Concurrency](#concurrency)
-- [Memory Management](#memory-management)
-- [Packages and Modules](#packages-and-modules)
-- [Makefile for Database Setup and Migrations](#makefile-for-database-setup-and-migrations)
-- [Database Migrations. CLI](#migrations)
-- [SQLC Configuration](#sqlc-configuration)
-- [Final Notes](#final-notes)
+| Topic | Description |
+|-------|-------------|
+| [Hello Gogo](#hello-gogo) | Introduction to Go programming |
+| [Why We Need Go](#why-we-need-go) | Benefits and use cases of Go |
+| [Basic Program Structure](#basic-program-structure) | Fundamental Go program organization |
+| [Variables](#variables) | Variable declaration and usage |
+| [Struct](#struct) | Structure definitions and usage |
+| [& (Address-of Operator) / * (Dereference Operator)](#address-of-and-dereference-operator) | Memory address and pointer operations |
+| [Exported (Public) / Unexported (Private)](#exported-public--unexported-private) | Access modifiers in Go |
+| [Array](#array) | Array/Slice operations and usage |
+| [Map](#map) | Maps|
+| [Encapsulation](#encapsulation) | Data encapsulation principles |
+| [Composition](#composition) | Object composition in Go |
+| [Concurrency](#concurrency) | Concurrent programming features |
+| [Memory Management](#memory-management) | Go's memory management system |
+| [Packages and Modules](#packages-and-modules) | Package and module organization |
+| [Makefile for Database Setup and Migrations](#makefile-for-database-setup-and-migrations) | Database setup automation |
+| [Database Migrations. CLI](#migrations) | Database migration tools |
+| [SQLC Configuration](#sqlc-configuration) | SQLC setup and usage |
+| [Final Notes](#final-notes) | Additional information and resources |
 
 ---
 
@@ -166,7 +169,7 @@ type Dog struct {
 
 ---
 
-### Array
+### [Array](https://github.com/sajjadmurtaza/hello_go/blob/main/basics/array/main.go)
 
 ```go
 var information [2]string
@@ -182,9 +185,32 @@ var houseNumbers = [5]int{1, 2, 3, 4, 5} // [1 2 3 4 5]
 // The start index is inclusive, but the end index is exclusive.
 houseNumbers[1:4]
 
-// Using make to create an array with 0's
-var dynamicIntArray = make([]int, 2, 5) // [0 0]
-var dynamicIntArray = make([]int, 5) // [0 0 0 0 0]
+// Slice: Using make to create an array with 0's
+var dynamicIntArray = make([]int, 2, 5) // [0 0] -> len(2) cap(5)
+var dynamicIntArray = make([]int, 5) // [0 0 0 0 0] -> len(5) cap(5)
+```
+- array
+  - [N]T
+  - Fixed at declaration
+- Slice
+  - []T
+  - Flexible and can grow
+
+---
+
+### [Map](https://github.com/sajjadmurtaza/hello_go/blob/main/basics/map/main.go)
+
+- map represent `key-value` pair collection
+
+```go
+  map[KeyType]ValueType // map[string]int
+
+  students := map[string]int{"GO": 1, "Ruby":2}
+
+  students["Java"] = 3 // add to map
+
+  delete(students, "Ruby") // delete from map
+
 ```
 
 ---

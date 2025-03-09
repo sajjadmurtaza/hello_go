@@ -1,0 +1,55 @@
+/* 全体レイアウト */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: 50px auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.chat-log {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* 縦方向にメッセージを積む */
+  gap: 5px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  overflow-y: auto;
+  height: 300px;
+}
+
+/* 吹き出し共通 */
+.chat-message {
+  display: inline-block;
+  max-width: 70%;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* 自分のメッセージ（右寄せ） */
+.chat-message.user {
+  background-color: #dcf8c6; /* LINE風の淡い緑 */
+  align-self: flex-end; /* 右寄せ */
+  border-bottom-right-radius: 0; /* 右下を尖らせる例 */
+}
+
+/* チャットボットのメッセージ（左寄せ） */
+.chat-message.bot {
+  background-color: #f1f0f0; /* グレー */
+  align-self: flex-start; /* 左寄せ */
+  border-bottom-left-radius: 0; /* 左下を尖らせる例 */
+}
+
+.chat-input-box {
+  display: flex;
+  gap: 8px;
+}
+
+#chat-input {
+  flex: 1;
+  padding: 8px;
+}
