@@ -1,50 +1,62 @@
+// ============= ####### =============
+// ============== main ==============
+// ============= ####### =============
+
 package main
 
 import "fmt"
 
+// ============= ####### =============
+// ============ structs =============
+// ============= ####### =============
+
+// Student represents a basic student structure
 type Student struct {
 	Name string
 }
 
+// ============= ####### =============
+// ============== main ==============
+// ============= ####### =============
+
 func main() {
+	// ============= ####### =============
+	// ====== regular struct usage ======
+	// ============= ####### =============
 
-	// // ============= ####### =============
-	// // ============= regular  ============
-	// // ============= ####### =============
-
+	// Create a new Student instance
 	student := Student{
 		Name: "GO",
 	}
-
 	fmt.Println("Student: ", student)
 
-	// // ============= ####### =============
-	// // ============= address  ============
-	// // ============= ####### =============
+	// ============= ####### =============
+	// ======== pointer creation ========
+	// ============= ####### =============
 
-	studentPtr := &student // memory address of a student
-
-	// studentPtr is called a pointer because it points to the memory location of studentPtr
+	// Get the memory address of student
+	studentPtr := &student // & operator returns the memory address
 	fmt.Println("Student Pointer: ", studentPtr)
 
-	// // ============= ####### =============
-	// // ============= dereference  ============
-	// // ============= ####### =============
+	// ============= ####### =============
+	// ======= pointer dereference ======
+	// ============= ####### =============
 
-	studentPtrDereferenced := *studentPtr //access the value stored at a student pointer's address.
-
+	// Access the value at the pointer's address
+	studentPtrDereferenced := *studentPtr // * operator dereferences the pointer
 	fmt.Println("Student Pointer Dereferenced: ", studentPtrDereferenced)
 	fmt.Println("Student Pointer Dereferenced Name: ", studentPtrDereferenced.Name)
-
 }
 
-// type Student struct {
-// 	Name string
-//
-//  we can use * point to make optional fields in struct
-// Runner *Runner
-// }
+/* Additional Notes on Pointers in Structs:
+   When defining structs, you can use pointers to make fields optional:
 
-// type Runner struct {
-// 	Name string
-// }
+   type Student struct {
+       Name string
+       Runner *Runner  // Optional field using pointer
+   }
+
+   type Runner struct {
+       Name string
+   }
+*/

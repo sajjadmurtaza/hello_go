@@ -1,43 +1,62 @@
+// ============= ####### =============
+// ============== main ==============
+// ============= ####### =============
+
 package main
 
 import "fmt"
 
-var (
-	firsName, lastName string = "GO", "Lang" //unexported or private, accessible within the package
+// ============= ####### =============
+// ============== vars ==============
+// ============= ####### =============
 
-	Number int //exported or public, accessible outside the package
+// Package-level variables
+var (
+	// Private variables (unexported)
+	firstName, lastName string = "GO", "Lang"
+
+	// Public variable (exported)
+	Number int
 )
 
+var age int
+
+// ============= ####### =============
+// ============== funcs =============
+// ============= ####### =============
+
 func main() {
-	// // ============= ####### =============
-	// // ============== var ================
-	// // ============= ####### =============
+	// ============= ####### =============
+	// ============== var ==============
+	// ============= ####### =============
 
-	var c, python, java bool //default value false
-	var i int                //default value 0
-	var j, k int = 9, 99     //type inference
+	// Multiple variable declarations with default values
+	var c, python, java bool // default value: false
+	var i int                // default value: 0
+	var j, k int = 9, 99     // type inference
 
-	fmt.Printf("Unexported firstName: %s, lastName: %s, Exported Number: %d \n", firsName, lastName, Number)
-
+	// Print default values
+	fmt.Println("age:", age)
+	fmt.Printf("Unexported firstName: %s, lastName: %s, Exported Number: %d\n",
+		firstName, lastName, Number)
 	fmt.Println(i, j, k, c, python, java)
 
-	// // ============= ####### =============
-	// // ===== := (short assignment) =======
-	// // ============= ####### =============
+	// ============= ####### =============
+	// ===== := (short assignment) =======
+	// ============= ####### =============
 
+	// Short variable declaration
 	name := "GO"
-
 	fmt.Println(name)
 
-	// // ============= ####### =============
-	// // ============= const  ==============
-	// // ============= ####### =============
+	// ============= ####### =============
+	// ============= const  ==============
+	// ============= ####### =============
 
-	const isGoodToLean = true
+	// Constants are immutable values
+	const isGoodToLearn = true
+	fmt.Println(isGoodToLearn)
 
-	fmt.Println(isGoodToLean)
-
-	// isGoodToLean = false
-	// cost are immutable values
-	// that cannot be changed after they are set.
+	// isGoodToLearn = false // This would cause a compilation error
+	// Constants cannot be changed after they are set
 }

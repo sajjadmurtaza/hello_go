@@ -2,6 +2,8 @@ package models
 
 import "fmt"
 
+var FirstName string = "GOLANF"
+
 type Student struct {
 	Name    string
 	Address string

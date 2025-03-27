@@ -20,4 +20,6 @@ func main() {
 
 	// student.PrintName undefined (type models.Student has no field or method PrintName, but does have unexported method printName)
 	// student.PrintName()
+
+	fmt.Println(models.FirstName)
 }

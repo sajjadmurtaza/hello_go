@@ -1,43 +1,74 @@
+// ============= ####### =============
+// ============== main ==============
+// ============= ####### =============
+
 package main
 
 import "fmt"
 
-func main() {
-	fmt.Println("=========================================")
-	fmt.Println("============ Map ========================")
+// ============= ####### =============
+// ============== funcs =============
+// ============= ####### =============
 
+// printMap demonstrates how to iterate over a map
+func printMap(students map[string]int) {
+	for student, age := range students {
+		fmt.Printf("Student: %s, Age: %d\n", student, age)
+	}
+}
+
+// ============= ####### =============
+// ============== main ==============
+// ============= ####### =============
+
+func main() {
+	// ============= ####### =============
+	// ============== init ==============
+	// ============= ####### =============
+
+	// Initialize a map with key-value pairs
 	students := map[string]int{
 		"Jhon": 10,
 		"Kim":  12,
 	}
 
-	for student, age := range students {
-		fmt.Printf("Student: %s, Age: %d\n", student, age)
-	}
+	// ============= ####### =============
+	// ============== print =============
+	// ============= ####### =============
 
-	fmt.Println("=== Get single student's age ===========")
+	fmt.Println("Initial students:")
+	printMap(students)
+
+	// ============= ####### =============
+	// ============== get ==============
+	// ============= ####### =============
+
+	fmt.Println("\nGet single student's age:")
 	fmt.Println("Student Jhon's age:", students["Jhon"])
 
-	fmt.Println("=========================================")
-	fmt.Println("==== Update Existing student's age ======")
+	// ============= ####### =============
+	// ============== update ============
+	// ============= ####### =============
 
+	fmt.Println("\nUpdate existing student's age:")
 	students["Kim"] = 13
-
 	fmt.Println("Student Kim's age:", students["Kim"])
 
-	fmt.Println("=========================================")
-	fmt.Println("=== Add New student's age ===============")
+	// ============= ####### =============
+	// ============== add ==============
+	// ============= ####### =============
 
+	fmt.Println("\nAdd new student:")
 	students["Habibi"] = 14
-
 	fmt.Println("Student Habibi's age:", students["Habibi"])
 
-	fmt.Println("=========================================")
-	fmt.Println("==== Delete student ================")
+	// ============= ####### =============
+	// ============== delete ===========
+	// ============= ####### =============
 
+	fmt.Println("\nDelete student:")
 	delete(students, "Kim")
-
-	fmt.Println("Student Kim's age:", students["Kim"])
-	fmt.Println(students)
-
+	fmt.Println("After deleting Kim:")
+	fmt.Println("Student Kim's age:", students["Kim"]) // Will print 0 (zero value)
+	fmt.Println("Current students:", students)
 }

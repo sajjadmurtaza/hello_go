@@ -29,13 +29,15 @@
 - Developer at Google in 2007
 - Open-Source in 2009
 
+[Why did Google develop Go?](https://www.quora.com/Why-did-Google-develop-Go)
+
 ---
 
 ### Why We Need Go
 
 - **Multi-threading**: Multiple tasks/things at once
   - Each thread processes one task
-  - You can run many of them in parallel
+  - You can run many of them at once
     - e.g.
       - Google Drive: Downloading, uploading, changing file name
       - YouTube: Watching video, commenting
@@ -48,7 +50,7 @@
     - Complex code
     - Expensive / Slow
   - **GO**
-    - Designed to run multiple codes and support concurrency
+    - Designed to run multiple cores and support concurrency
       - Cheap and easy
 
 ---
@@ -104,6 +106,17 @@
   - Scope: Variables can be local to a function or package-level, affecting their accessibility.
   - Constants: Immutable values declared with the const keyword.
 
+
+
+| Feature         | `var`                     | `:=`                    |
+|---------------|--------------------------|------------------------|
+| **Scope**     | Can be used globally **or** inside functions | Only works **inside functions** |
+| **Type**      | Can **explicitly define** type | **Implicit type inference** |
+| **Initialization** | Optional (default values assigned) | **Mandatory** (must provide value) |
+| **Readability** | Better for **complex types** and multiple declarations | Best for **quick local variable declarations** |
+| **Package-Level** | ✅ Allowed  | ❌ Not allowed |
+
+---
 
 ---
 
